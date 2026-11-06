@@ -1,0 +1,27 @@
+VERSION ""
+
+NS_ :
+
+BS_:
+
+BU_: BMS VCU
+
+BO_ 1280 BMS_Status: 8 BMS
+ SG_ PackVoltage : 0|16@1+ (0.02,0) [0|1310.7] "V" VCU
+ SG_ PackCurrent : 16|16@1- (0.1,0) [-3276.8|3276.7] "A" VCU
+ SG_ SoC : 32|8@1+ (0.5,0) [0|100] "%" VCU
+ SG_ ContactorState : 40|3@1+ (1,0) [0|7] "" VCU
+ SG_ FaultActive : 43|1@1+ (1,0) [0|1] "" VCU
+
+BO_ 1281 BMS_CellStats: 8 BMS
+ SG_ CellVmin : 0|16@1+ (0.0001,0) [0|6.5535] "V" VCU
+ SG_ CellVmax : 16|16@1+ (0.0001,0) [0|6.5535] "V" VCU
+ SG_ CellVminIdx : 32|8@1+ (1,0) [0|255] "" VCU
+ SG_ CellVmaxIdx : 40|8@1+ (1,0) [0|255] "" VCU
+
+BO_ 1536 VCU_Command: 2 VCU
+ SG_ ContactorRequest : 0|1@1+ (1,0) [0|1] "" BMS
+ SG_ ChargeEnable : 1|1@1+ (1,0) [0|1] "" BMS
+
+CM_ SG_ 1280 PackCurrent "Positive is discharge.";
+VAL_ 1280 ContactorState 0 "Open" 1 "Precharge" 2 "Closed" 3 "Fault" ;
