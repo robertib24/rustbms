@@ -168,7 +168,7 @@ By Sunday evening the repo has a green CI run, and bms-core has a tested single-
 Done when:
 
 - [x] `cargo test` passes the five model checks
-- [ ] CI is green on GitHub, including the `no_std` build of bms-core
+- [x] CI is green on GitHub, including the `no_std` build of bms-core
 - [x] the discharge plot has a flat middle and a knee near empty, like a real cell
 
 Rust you meet here: workspaces, structs and impl blocks, const arrays, `#![no_std]` with libm, unit tests, file output.
