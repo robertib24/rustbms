@@ -6,3 +6,5 @@
 //!
 //! Sign convention, everywhere: current `i > 0` is discharge.
 #![cfg_attr(not(test), no_std)]
+
+pub mod cell;

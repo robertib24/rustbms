@@ -160,16 +160,16 @@ bms-sim reuses the cell model from bms-core for the plant, with each cell's own 
 By Sunday evening the repo has a green CI run, and bms-core has a tested single-cell model that passes the first five rows of the checks table. Spend a few hours on chapters 1 to 5, 11 and 14 of the Rust Book first.
 
 1. Create the workspace with bms-core (library, `no_std` from the first commit) and bms-cli (binary), plus the CI workflow from the repo setup section. Start bms-core with `#![cfg_attr(not(test), no_std)]`, so its unit tests can still use std.
-2. In bms-core: the OCV table with linear interpolation, extrapolating past both ends rather than clamping; a `CellParams` struct; a `CellState` with soc, v1 and v2, and methods `step(i, dt)` and `terminal_voltage(i)`.
+2. In bms-core: the OCV table with linear interpolation, extrapolating past both ends rather than clamping; a `CellParams` struct; a `CellState` with soc, v1 and v2, and methods `step(&params, i, dt)` and `terminal_voltage(&params, i)`, which take the parameters so the plant can use each cell's own and the EKF nominal ones.
 3. Use `libm::exp` for the RC factors: `f64::exp` is not available in a `no_std` crate, just like `f64::powi`.
 4. Tests for the rest voltage, the R0 drop, the 1C discharge time, the relaxation and the pulse, using `approx::assert_relative_eq!`.
 5. In bms-cli, run the 1C discharge and write t, i, v and soc to a CSV; plot it in MATLAB or Python.
 
 Done when:
 
-- [ ] `cargo test` passes the five model checks
+- [x] `cargo test` passes the five model checks
 - [ ] CI is green on GitHub, including the `no_std` build of bms-core
-- [ ] the discharge plot has a flat middle and a knee near empty, like a real cell
+- [x] the discharge plot has a flat middle and a knee near empty, like a real cell
 
 Rust you meet here: workspaces, structs and impl blocks, const arrays, `#![no_std]` with libm, unit tests, file output.
 
